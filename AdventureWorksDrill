@@ -1,0 +1,77 @@
+SELECT * FROM AdventureWorks2008R2.Person.Address
+
+-- Stored Procedure:
+
+CREATE PROCEDURE uspGetAddress
+AS
+SELECT * FROM AdventureWorks2008R2.Person.Address
+GO
+
+-- To return the contents from the table specified code would be: (EXEC)uspGetAddress
+--Exact city
+CREATE PROCEDURE uspGetAddress @City nvarchar(30)
+AS
+SELECT *
+FROM AdventureWorks2008R2.Person.Address
+WHERE City = @City
+GO
+-- Stored procedure execute as follows:
+EXEC uspGetAddress @City = 'New York'
+-- User can give a starting point and we can use a wildcard instead of an exact =
+CREATE PROCEDURE uspGetAddress @City nvarchar(30)
+AS
+SELECT *
+FROM AdventureWorks2008R2.Person.Address
+WHERE City LIKE @City + '%'
+GO
+--^needs a parameter value and will not pass
+--PARAMETER VALUES
+--This next one won't pass either because city values are equal to NULL
+CREATE PROCEDURE uspGetAddress @City nvarchar(30) = NULL
+AS
+SELECT *
+FROM AdventureWorks2008R2.Person.Address
+WHERE City = @City
+GO
+CREATE PROCEDURE uspGetAddress @City nvarchar(30) = NULL
+AS
+SELECT *
+FROM AdventureWorks2008R2.Person.Address
+WHERE City = ISNULL(@City,City)
+GO
+--Use ISNULL to get around NULL issue but will still need additional logic for city ISNULL
+
+--SETTING UP PARAMETERS
+CREATE PROCEDURE uspGetAddress @City nvarchar(30) = NULL, @AddressLine1 nvarchar(60) = NULL 
+AS
+SELECT *
+FROM AdventureWorks2008R2.Person.Address
+WHERE City = ISNULL(@City,City)
+AND AddressLine1 LIKE '%' + ISNULL(@AddressLine1 ,AddressLine1) + '%'
+GO
+--To Execute:
+EXEC uspGetAddress @City = 'Calgary'
+--or include 'Calgary', @AddressLine1 = 'A' or @AddressLine1 = 'Acardia' etc.
+
+--RETURNING STORED PROCEDURE PARAMETER VALUES TO CALLING STORED PROCEDURE
+DROP PROCEDURE uspGetAddress 
+GO
+-- or
+DROP PROC uspGetAddress 
+GO
+-- or 
+DROP PROC dbo.uspGetAddress -- also specify the schema
+--Drop Multiple
+DROP PROCEDURE uspGetAddress, uspInsertAddress, uspDeleteAddress
+GO
+-- or
+DROP PROC uspGetAddress, uspInsertAddress, uspDeleteAddress
+GO
+
+--Alter procedure
+ALTER PROCEDURE uspGetAddress @City nvarchar(30)
+AS
+SELECT * 
+FROM AdventureWorks.Person.Address
+WHERE City LIKE @City + '%'
+GO
