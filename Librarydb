@@ -1,0 +1,274 @@
+USE mydatabase
+GO
+DROP TABLE tblBooks1
+CREATE TABLE tblBooks1 (
+Book_Id INT PRIMARY KEY,
+Title VARCHAR(255)NOT NULL,
+Publisher_Name VARCHAR(255) NULL )
+Go
+INSERT INTO tblBooks1
+VALUES (101, 'The Lost Tribe', NULL)
+INSERT INTO tblBooks1
+VALUES (102, 'The Magic Mountain', NULL)
+INSERT INTO tblBooks1
+VALUES (103, 'A Tale of Two Cities', NULL)
+INSERT INTO tblBooks1
+VALUES (104, 'The Shining', NULL)
+INSERT INTO tblBooks1
+VALUES (105, 'Faust', NULL)
+INSERT INTO tblBooks1
+VALUES (106, 'The Tin Drum', NULL)
+INSERT INTO tblBooks1
+VALUES (107, 'The Possessed', NULL)
+INSERT INTO tblBooks1
+Values (108, 'The Adventures of Tin Tin Vol.1', NULL)
+INSERT INTO tblBooks1
+VALUES (109, 'The Snows of Kilimanjaro', NULL)
+INSERT INTO tblBooks1
+VALUES (110, 'Paradise Lost', NULL)
+INSERT INTO tblBooks1
+VALUES (111, 'The Violent Bear It Away', NULL)
+INSERT INTO tblBooks1
+VALUES (112, 'Ulysses', NULL)
+INSERT INTO tblBooks1
+VALUES (113, 'The Inferno', NULL)
+INSERT INTO tblBooks1
+VALUES (114, 'The Fall of The House of Usher', NULL)
+INSERT INTO tblBooks1
+VALUES (115, 'The Iliad', NULL)
+INSERT INTO tblBooks1
+VALUES (116, 'The Odyssey', NULL)
+INSERT INTO tblBooks1
+VALUES (117, 'Lolita', NULL)
+INSERT INTO tblBooks1
+VALUES (118, 'King Lear', NULL)
+INSERT INTO tblBooks1
+VALUES (119, 'War and Peace', NULL)
+INSERT INTO tblBooks1
+VALUES (120, 'Madame Bovary', NULL)
+INSERT INTO tblBooks1
+VALUES (121, 'The Stranger', NULL)
+DROP TABLE tblBooksAuthors1
+CREATE TABLE tblBookAuthors1 (
+Book_Id INT PRIMARY KEY,
+Author_Name VARCHAR(255)NOT NULL )
+GO
+INSERT INTO tblBookAuthors1
+VALUES (102, 'Mann_Thomas')
+INSERT INTO tblBookAuthors1
+VALUES (103, 'Dickens_Charles')
+INSERT INTO tblBookAuthors1
+VALUES (104, 'King_Stephen')
+INSERT INTO tblBookAuthors1
+VALUES (105, 'Goethe_JohannW')
+INSERT INTO tblBookAuthors1
+VALUES (106, 'Grass_Gunter')
+INSERT INTO tblBookAuthors1
+VALUES (107, 'Dostoyevsky_Fyodor')
+INSERT INTO tblBookAuthors1
+VALUES (108, 'Remi_Georges')
+INSERT INTO tblBookAuthors1
+Values (109, 'Hemingway_Ernest')
+INSERT INTO tblBookAuthors1
+VALUES (110, 'Milton_John')
+INSERT INTO tblBookAuthors1
+VALUES (111, 'OConnor_Flannery')
+INSERT INTO tblBookAuthors1
+VALUES (112, 'Joyce_James')
+INSERT INTO tblBookAuthors1
+VALUES (113, 'Alighieri_Dante')
+
+CREATE TABLE tblpublishers (
+Name VARCHAR(255) PRIMARY KEY,
+Address VARCHAR(255)NULL,
+Phone int NULL )
+Go
+
+DROP TABLE tblBook_Copies
+
+CREATE TABLE tblBook_Copies (
+Book_Id INT NOT NULL,
+Branch_Id INT NOT NULL,
+No_of_copies int NOT NULL )
+GO
+
+INSERT INTO tblBook_Copies
+VALUES (106, 2120, 10)
+INSERT INTO tblBook_Copies
+VALUES (113, 2121, 20)
+INSERT INTO tblBook_Copies
+VALUES (109, 2123, 5)
+INSERT INTO tblBook_Copies
+VALUES (111, 2124, 28)
+INSERT INTO tblBook_Copies
+VALUES (108, 2125, 10)
+INSERT INTO tblBook_Copies
+VALUES (101, 2125, 10)
+INSERT INTO tblBook_Copies
+VALUES (102, 2125, 10)
+INSERT INTO tblBook_Copies
+VALUES (103, 2125, 10)
+INSERT INTO tblBook_Copies
+VALUES (104, 2125, 10)
+INSERT INTO tblBook_Copies
+VALUES (105, 2125, 10)
+INSERT INTO tblBook_Copies
+VALUES (121, 2120, 10)
+INSERT INTO tblBook_Copies
+VALUES (120, 2120, 10)
+INSERT INTO tblBook_Copies
+VALUES (119, 2120, 10)
+INSERT INTO tblBook_Copies
+VALUES (110, 2123, 10)
+INSERT INTO tblBook_Copies
+VALUES (113, 2124, 50)
+INSERT INTO tblBook_Copies
+VALUES (112, 2124, 20)
+INSERT INTO tblBook_Copies
+VALUES (108, 2122, 20)
+INSERT INTO tblBook_Copies
+VALUES (107, 2122, 20)
+INSERT INTO tblBook_Copies
+VALUES (116, 2123, 20)
+INSERT INTO tblBook_Copies
+VALUES (106, 2123, 10)
+INSERT INTO tblBook_Copies
+VALUES (117, 2123, 20)
+INSERT INTO tblBook_Copies
+VALUES (103, 2123, 20)
+INSERT INTO tblBook_Copies
+VALUES (104, 2124, 20)
+INSERT INTO tblBook_Copies
+VALUES (108, 2124, 10)
+INSERT INTO tblBook_Copies
+VALUES (109, 2124, 10)
+INSERT INTO tblBook_Copies
+VALUES (116, 2124, 10 )
+INSERT INTO tblBook_Copies
+VALUES (121, 2124, 10 ) 
+DROP TABLE tblLibrarybranch
+CREATE TABLE tblLibrarybranch (
+Branch_Id INT PRIMARY KEY,
+Branch_Name VARCHAR(255), 
+Address VARCHAR(255) NULL )
+GO
+INSERT INTO tblLibrarybranch
+VALUES (2120, 'Sharpstown', NULL)
+INSERT INTO tblLibrarybranch
+VALUES (2121, 'CosCob', NULL)
+INSERT INTO tblLibrarybranch
+VALUES (2122, 'Greenwich', NULL)
+INSERT INTO tblLibrarybranch
+VALUES (2123, 'Hawthorne', NULL)
+INSERT INTO tblLibrarybranch
+VALUES (2124, 'Riverside', NULL)
+INSERT INTO tblLibrarybranch
+VALUES (2125, 'SantaCruz', NULL)
+DROP TABLE tblBook_Loans
+CREATE TABLE tblBook_Loans (
+Book_Id INT Not Null,
+Branch_Id INT NOT NULL,
+Card_No INT NOT NULL,
+Date_out DATETIME NOT NULL,
+Due_Date DATE NOT NULL )
+GO
+
+INSERT INTO tblBook_Loans
+VALUES (102, 2125, 1234, '2015-03-06', '2015-04-06')
+INSERT INTO tblBook_Loans
+VALUES (102, 2125, 1235, '2015-03-07', '2015-04-07')
+INSERT INTO tblBook_Loans
+VALUES (103, 2121, 1234, '2015-03-10', '2015-04-10')
+INSERT INTO tblBook_Loans
+VALUES (101, 2122, 1244, '2015-03-11', '2015-04-11') 
+INSERT INTO tblBook_Loans
+VALUES (113, 2123, 1234, '2015-03-16', '2015-04-16')
+INSERT INTO tblBook_Loans
+VALUES (106, 2123, 1234, '2015-03-20', '2015-04-20')
+INSERT INTO tblBook_Loans
+VALUES (104, 2122, 1234, '2015-03-21', '2015-04-21')
+INSERT INTO tblBook_Loans
+VALUES (105, 2122, 1234, '2015-03-22', '2015-04-22')
+INSERT INTO tblBook_Loans
+VALUES (103, 211, 1365, '2015-03-23', '2015-04-23')
+INSERT INTO tblBook_Loans
+VALUES (102, 2125, 1355, '2015-03-24', '2015-04-24')
+INSERT INTO tblBook_Loans
+VALUES (118, 2122, 1352, '2015-04-01', '2015-05-01')
+INSERT INTO tblBook_Loans
+VALUES (101, 2122, 1234, '2015-04-22', '2015-05-22')
+INSERT INTO tblBook_Loans
+VALUES (101, 2122, 1255, '2015-04-23', '2015-05-23')
+INSERT INTO tblBook_Loans
+VALUES (119, 2123, 1352, '2015-04-28', '2015-05-28')
+
+DROP TABLE tblBorrow
+CREATE TABLE tblBorrow (
+Card_No int NOT NULL,
+Name VARCHAR(255) PRIMARY KEY,
+Address VARCHAR(255)NOT NULL,
+Phone CHAR(10) NULL )
+GO 
+
+INSERT INTO tblBorrow
+VALUES (1234, 'Quincy Goss', '200 Milbank Ave', '2032536259')
+INSERT INTO tblBorrow
+VALUES (1235, 'Allison Fryman', '4636 SE Windsor Ct', '5418412326')
+INSERT INTO tblBorrow
+VALUES (1244, 'Quentin Tarantino', '800 Sunset blvd', '8312124898')
+INSERT INTO tblBorrow
+VALUES (1255, 'Spock', '200 Independence Way', '1212324848')
+INSERT INTO tblBorrow
+VALUES (1372, 'Bones', '1232 Milbank ave', '4324326437')
+INSERT INTO tblBorrow
+VALUES (1352, 'Brare Rabbit', '23 Brier Patch Drive', NULL)
+INSERT INTO tblBorrow
+VALUES (1355, 'Stephanie McAleer', '493 Roberta Ave', NULL)
+INSERT INTO tblBorrow
+VALUES (1365, 'Gus Wolf','455 Connecticut Way', '4156567012')
+
+
+SELECT book_id, 2120, no_of_copies FROM tblBook_Copies
+GO
+--There are 0 copies of The Lost Tribe at Sharpstown
+SELECT 101, branch_id, no_of_copies FROM tblBook_Copies
+GO
+SELECT * FROM tblBook_Copies
+GO
+--There are 10 books total located at 2125 Santa Cruz
+SELECT card_no FROM tblBook_Loans ORDER BY Card_No ASC
+Go
+--Results show that every person has at least one book out. 
+SELECT Branch_Id FROM tblBook_Loans WHERE Due_Date='2015-05-12'
+GO 
+--There are no books with the due date for today from Sharpstown (or any other library)
+SELECT tblLibrarybranch. Branch_Id,Branch_name, tblBook_Loans.Book_Id
+FROM tblLibrarybranch
+FULL OUTER JOIN tblBook_Loans
+ON tblBook_Loans. Book_Id=tblBook_Loans.Book_Id 
+ORDER BY tblLibrarybranch. Branch_Id;
+GO
+SELECT tblLibrarybranch. Branch_Name, tblBook_Loans.Book_Id
+FROM tblLibrarybranch
+LEFT JOIN tblBook_Loans
+ON tblLibrarybranch. Branch_Id=tblBook_Loans.Branch_Id
+ORDER BY tblLibrarybranch. Branch_Name;
+GO
+--CosCob has 1 book out, Greenwich has 6 books out, Hawthorne has 3 books out, Riverside has no books out, Santa Cruz has 3 books out, Sharpstown 0 books out.
+
+SELECT book_id, card_no FROM tblBook_Loans
+ORDER BY Card_No;
+--1234 has 7 books checked out
+SELECT * FROM tblBorrow
+ORDER BY Card_No;
+--Quincy Goss 200 Milbank Ave 2032536259 has more than 5 books checked out.
+
+
+SELECT tblBookAuthors1. Author_Name, tblBook_Copies.Branch_Id
+FROM tblBookAuthors1
+INNER JOIN tblBook_Copies
+ON tblBookAuthors1. Book_Id=tblBook_Copies.Book_Id
+ORDER BY tblBookAuthors1. Author_Name;
+--2125 and 2124 both hold King_Stephen.
+SELECT branch_id, branch_name FROM tblLibrarybranch
+--Riverside and Santa Cruz both hold Stephen King but no Central.
